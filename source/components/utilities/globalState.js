@@ -28,7 +28,6 @@ const globalState = {
   updateCouldDoText( projectId, couldDoId, text ) {
     stateStorage.projects[projectId].couldDos[couldDoId].text = text
     this.passStateToSubscribers()
-    console.log('is this running......?')
   },
 
   addProject( newProject ) {
@@ -61,12 +60,8 @@ const globalState = {
     }
     this.scheduledTrigger = setTimeout( () => {
       delete this.scheduledTrigger
-      console.log('subscribers: ',this.subscribers)
-      console.log('state storage: ', stateStorage)
       this.subscribers.forEach( subscriber => {
-        console.log('run subscribers.forEach')
         subscriber( stateStorage )
-        console.log('is this running?')
       })
     })
   }

@@ -34,11 +34,10 @@ export default class TextFieldContainer extends Component {
               break
             case 'could-do':
               globalState.updateCouldDoText( projectId, id, text )
-              console.log('!!!!!!!!!!!!!', projectId, id, text)
-              this.setState({ editing: false })
               break
             default:
           }
+          this.setState({ editing: false })
         })
         .catch( componentErrorHandler( 'TextFieldContainer' ) )
     }

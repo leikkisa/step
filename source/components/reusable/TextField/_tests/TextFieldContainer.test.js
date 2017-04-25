@@ -49,7 +49,27 @@ describe.only('<TextFieldContainer />', () => {
   )
 
   it('updates global state with new project when type is project', done => {
-    wrapper = mount( < TextFieldContainer type = 'project' / > )
+    wrapper = mount( < TextFieldContainer type='project' / > )
+    wrapper.instance().makeEditable()
+    let event = {
+      key: 'Enter'
+    }
+    wrapper.instance().handleKeyPress(event)
+    moxios.wait( () => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({
+        status: 200,
+        response: ''
+      }).then( () => {
+        expect( makeKeyPressProjectSpy.calledOnce ).to.equal( true )
+        expect( makeKeyPressCouldDoSpy.notCalled ).to.equal( true )
+        done()
+      }).catch(done)
+    })
+  })
+
+  it('updates global state with new couldDo when type is couldDo', done => {
+    wrapper = mount( < TextFieldContainer type='could-do' / > )
     wrapper.instance().makeEditable()
     let event = {
       key: 'Enter'
@@ -61,30 +81,12 @@ describe.only('<TextFieldContainer />', () => {
         status: 200,
         response: ''
       }).then(() => {
-        expect(makeKeyPressProjectSpy.calledOnce).to.equal(true)
+        expect( makeKeyPressCouldDoSpy.calledOnce ).to.equal(true)
+        expect( makeKeyPressProjectSpy.notCalled ).to.equal( true )
         done()
       }).catch(done)
     })
   })
-
-  // it('updates global state with new couldDo when type is couldDo', done => {
-  //   wrapper = mount( < TextFieldContainer type = 'could-do' / > )
-  //   wrapper.instance().makeEditable()
-  //   let event = {
-  //     key: 'Enter'
-  //   }
-  //   wrapper.instance().handleKeyPress(event)
-  //   moxios.wait(() => {
-  //     const request = moxios.requests.mostRecent()
-  //     request.respondWith({
-  //       status: 200,
-  //       response: ''
-  //     }).then(() => {
-  //       expect(makeKeyPressCouldDoSpy.calledOnce).to.equal(true)
-  //       done()
-  //     }).catch(done)
-  //   })
-  // })
 
   it('editInput changes state to input value', () => {
     let event = {
@@ -109,15 +111,14 @@ describe.only('<TextFieldContainer />', () => {
         status: 200,
         response: ''
       }).then(() => {
-        console.log('_________>', wrapper)
         expect(wrapper.state().editing).to.equal(false)
         done()
       }).catch(done)
     })
   })
 
-  // it( 'textFieldContainer error handler', () =>
-  //   expect( wrapper.find( 'TextField' ).length ).to.equal( 1 )
-  // )
+  it( 'textFieldContainer error handler', () =>
+    expect( wrapper.find( 'TextField' ).length ).to.equal( 1 )
+  )
 
 })
