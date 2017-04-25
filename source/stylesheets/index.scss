@@ -1,4 +1,8 @@
 // Components
-@import "/source/components/login/login";
-@import "/source/components/heading/heading";
+@import "../components/Login/login";
+@import "../components/reusable/Heading/heading";
 @import "global";
+
+body {
+  color: green;
+}
