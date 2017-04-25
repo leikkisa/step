@@ -12,7 +12,7 @@ import TextFieldContainer from '../TextFieldContainer'
 import globalState from 'sym/source/components/utilities/globalState'
 import { mockGlobalState } from 'sym/source/testUtilities/mockComponentData'
 
-describe.only('<TextFieldContainer />', () => {
+describe('<TextFieldContainer />', () => {
   let warnStub, wrapper, makeEditableSpy, makeKeyPressProjectSpy, makeKeyPressCouldDoSpy
 
   beforeEach(() => {
