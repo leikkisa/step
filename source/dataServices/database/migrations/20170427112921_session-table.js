@@ -1,22 +1,14 @@
 
 exports.up = ( knex, Promise ) =>
   Promise.all( [
-    knex.schema.createTable( 'session', table => {
-      table.string( 'sid' )
-      table.integer( 'sess' )
-      table.timestamps( 'expire' )
+    knex.schema.createTable( 'sessions', table => {
+      table.string( 'sid' ).notNullable()
+      table.json( 'sess' ).notNullable()
+      table.timestamp( 'expired' ).notNullable()
     })
   ] )
 
 exports.down = ( knex, Promise ) =>
   Promise.all( [
-    knex.schema.dropTable( 'session' )
+    knex.schema.dropTable( 'sessions' )
   ] )
-
-// CREATE TABLE "session" (
-//   "sid" varchar NOT NULL COLLATE "default",
-// 	"sess" json NOT NULL,
-// 	"expire" timestamp(6) NOT NULL
-// )
-// WITH (OIDS=FALSE);
-// ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
