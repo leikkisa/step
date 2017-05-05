@@ -13,8 +13,6 @@ const globalStateHelpers = stateStorage => ({
   },
 
   updateProjects( projects ) {
-    console.log('meow');
-    console.log( 'projects:', projects )
     for ( let projectKey in stateStorage.projects ) {
       const newOrder = projects.filter( project => project.id === projectKey )[0].order
       stateStorage.projects[projectKey].order = newOrder
@@ -22,8 +20,11 @@ const globalStateHelpers = stateStorage => ({
     this.passStateToSubscribers()
   },
 
-  updateCouldDos( projectId, couldDos ) {
-    stateStorage.projects[projectId].couldDos = couldDos
+  updateCouldDos( couldDos ) {
+    for ( let couldDoKey in stateStorage.projects[stateStorage.currentProjectId].couldDos ) {
+      const newOrder = couldDos.filter( couldDo => couldDo.id === couldDoKey )[0].order
+      stateStorage.projects[stateStorage.currentProjectId].couldDos[couldDoKey].order = newOrder
+    }
     this.passStateToSubscribers()
   },
 
