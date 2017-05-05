@@ -93,4 +93,11 @@ const deleteRecord = ( table, id ) => {
     })
     .catch( error => handleDatabaseError( error, errorMessage ) )
 }
-export { createRecord, updateRecordWithUserID, updateOrderWithUserId, updateRecord, deleteRecordWithUserID, deleteRecord }
+export {
+  createRecord,
+  updateRecordWithUserID,
+  updateOrderWithUserId,
+  updateRecord,
+  deleteRecordWithUserID,
+  deleteRecord
+}

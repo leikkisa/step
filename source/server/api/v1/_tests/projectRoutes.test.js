@@ -124,11 +124,11 @@ describe( 'project routes', () => {
   })
 
   context( '/project/order', () => {
-    const projecstWithNewOrder = []
+    const projectsWithNewOrder = []
     Object.keys( mockProjectData ).forEach( ( key, index ) => {
       if ( index < 2 ) {
         mockProjectData[key].order = index + 35
-        projecstWithNewOrder.push( mockProjectData[key] )
+        projectsWithNewOrder.push( mockProjectData[key] )
       }
     })
 
@@ -137,7 +137,7 @@ describe( 'project routes', () => {
       it( 'should update order of projects', () =>
         chai.request( server )
           .post( '/project/order' )
-          .send( projecstWithNewOrder )
+          .send( projectsWithNewOrder )
           .then( ({ body: { rowCount } }) => {
             expect( rowCount ).to.equal( 2 )
           })
