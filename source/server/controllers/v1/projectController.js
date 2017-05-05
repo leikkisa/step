@@ -32,7 +32,17 @@ const handleEditProject = ( request, response, next ) => {
   return editProject( projectId, userId, attributes )
     .then( result => response.json( result ) )
     .catch( error =>
-      next( handleControllerError( error, `editCouldDo: problem updating /project/edit/${projectId} with ${JSON.stringify( attributes )}` ) )
+      next( handleControllerError( error, `editProject: problem updating /project/edit/${projectId} with ${JSON.stringify( attributes )}` ) )
+    )
+}
+
+const handleOrderProject = ( request, response, next ) => {
+  const { body: attributes, userId } = request
+  console.log( 'attributes:', attributes )
+  return editProject( userId, attributes )
+    .then( result => response.json( result ) )
+    .catch( error =>
+      next( handleControllerError( error, `orderProject: problem updating /project/order with ${JSON.stringify( attributes )}` ) )
     )
 }
 
@@ -54,6 +64,7 @@ export {
   handleGetCouldDosByProjectId,
   handleNewProject,
   handleEditProject,
+  handleOrderProject,
   handleDeleteProject,
   handleGetProjectsByUserId
 }

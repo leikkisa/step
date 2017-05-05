@@ -17,5 +17,4 @@ const Row = ({ text, id, fieldType, goToProject }) => {
   )
 }
 
-
 export default Row
