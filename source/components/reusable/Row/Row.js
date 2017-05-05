@@ -10,9 +10,9 @@ const Row = ({ text, id, fieldType, goToProject }) => {
     null
 
   const DragHandle = SortableHandle( () =>
-    ( <span>
+    (
       <IconListContainer text={ text } type={ fieldType } id={ id } />
-    </span> )
+    )
   )
 
   return (
