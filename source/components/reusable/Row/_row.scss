@@ -3,4 +3,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  span {
+    display: flex;
+    justify-content: center;
+    width: 10%;
+  }
 }

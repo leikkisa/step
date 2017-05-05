@@ -51,7 +51,7 @@ const RowList = ({ items, type }) => {
   }
 
   return (
-    <SortableList onSortEnd={ onSortEnd } />
+    <SortableList onSortEnd={ onSortEnd } useDragHandle />
   )
 }
 
