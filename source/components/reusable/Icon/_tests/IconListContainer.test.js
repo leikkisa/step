@@ -8,7 +8,7 @@ import { mockGlobalState } from 'sym/source/testUtilities'
 import IconListContainer from '../IconListContainer'
 import globalState from '../../../utilities/globalState'
 
-describe.only( '<IconListContainer />', () => {
+describe( '<IconListContainer />', () => {
   let wrapper
 
   context( 'without icons in the globalState', () => {
@@ -24,6 +24,17 @@ describe.only( '<IconListContainer />', () => {
       turnIntoProjectSpy = sinon.spy( IconListContainer.prototype, 'turnIntoProject' )
       turnIntoProjectStub = sinon.stub( globalState, 'addProject' )
       setCurrentProjectIdStub = sinon.stub( globalState, 'setCurrentProjectId' )
+      globalState.set( mockGlobalState )
+      wrapper = mount( <IconListContainer type='project' id={ 1 } /> )
+      envelope = mount( <IconListContainer type='could-do' id={ 1 } /> )
+    })
+
+    afterEach( () => {
+      moxios.uninstall()
+      deleteSpy.restore()
+      errorStub.restore()
+      deleteProjectStub.restore()
+      deleteCouldDoStub.restore()
       turnIntoProjectSpy.restore()
       turnIntoProjectStub.restore()
       setCurrentProjectIdStub.restore()

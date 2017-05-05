@@ -44,10 +44,10 @@ const updateOrderWithUserId = ( table, user_id, attributes ) => {
   ].join( ' ' )
 
   return knex.raw( updateQuery )
-  .catch( error => {
-    const errorMessage = `updateOrderWithUserId: unable to updateOrderWithUserId with user_id ${user_id} in table ${table} with ${JSON.stringify( attributes )}`
-    return handleDatabaseError( error, errorMessage )
-  })
+    .catch( error => {
+      const errorMessage = `updateOrderWithUserId: unable to updateOrderWithUserId with user_id ${user_id} in table ${table} with ${JSON.stringify( attributes )}`
+      return handleDatabaseError( error, errorMessage )
+    })
 }
 
 const updateRecord = ( table, id, attributes ) =>

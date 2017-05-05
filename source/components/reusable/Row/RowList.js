@@ -28,11 +28,15 @@ const RowList = ({ items, type }) => {
   ) )
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
+    console.log( 'itemsInOrder:', itemsInOrder )
+    console.log( 'oldIndex:', oldIndex )
+    console.log( 'newIndex:', newIndex )
     const afterSort = arrayMove( itemsInOrder, oldIndex, newIndex ).map( ({ key: id }, index ) => ({
       id,
       order: index
     }) )
-    axios.post( `${__HOST__}/${type}/order`, afterSort ) //eslint-disable-line
+    console.log( 'afterSort:', afterSort )
+    // axios.post( `${__HOST__}/${type}/order`, afterSort ) //eslint-disable-line
     switch ( type ) {
       case 'project':
         globalState.updateProjects( afterSort )

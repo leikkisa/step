@@ -15,9 +15,9 @@ const handleNewCouldDo = ( request, response, next ) => {
 }
 
 const handleEditCouldDo = ( request, response, next ) => {
-  const { body: attributes, userId } = request
+  const { body: attributes, params: { id: couldDoId }, userId } = request
 
-  return editCouldDo( userId, attributes )
+  return editCouldDo( couldDoId, userId, attributes )
     .then( result => response.json( result ) )
     .catch( error =>
       next( handleControllerError( error, `editCouldDo: problem updating /could-do/edit/${couldDoId} with ${JSON.stringify( attributes )}` ) )
@@ -25,7 +25,7 @@ const handleEditCouldDo = ( request, response, next ) => {
 }
 
 const handleOrderCouldDo = ( request, response, next ) => {
-  const { body: attributes, params: { id: couldDoId }, userId } = request
+  const { body: attributes, userId } = request
 
   return orderCouldDo( couldDos, userId, attributes )
     .then( result => response.json( result ) )

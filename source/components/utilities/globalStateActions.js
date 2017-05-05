@@ -13,6 +13,8 @@ const globalStateHelpers = stateStorage => ({
   },
 
   updateProjects( projects ) {
+    console.log('meow');
+    console.log( 'projects:', projects )
     for ( let projectKey in stateStorage.projects ) {
       const newOrder = projects.filter( project => project.id === projectKey )[0].order
       stateStorage.projects[projectKey].order = newOrder

@@ -6,7 +6,8 @@ import {
 import {
   newProject,
   editProject,
-  deleteProject
+  deleteProject,
+  orderProjects
 } from '../../../dataServices/database/commands'
 
 const handleGetCouldDosByProjectId = ( request, response, next ) =>
@@ -37,9 +38,9 @@ const handleEditProject = ( request, response, next ) => {
 }
 
 const handleOrderProject = ( request, response, next ) => {
-  const { body: attributes, userId } = request
-  console.log( 'attributes:', attributes )
-  return editProject( userId, attributes )
+  const { body: attributes, userId: user_id } = request
+
+  return orderProjects( user_id, attributes )
     .then( result => response.json( result ) )
     .catch( error =>
       next( handleControllerError( error, `orderProject: problem updating /project/order with ${JSON.stringify( attributes )}` ) )
